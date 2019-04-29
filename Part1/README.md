@@ -20,7 +20,6 @@ _Note: Review the exisiting HTML so you are familiar with the structure you are 
 - Add a `script` tag at the bottom of the `body` tag and connect the `index.js` file we just created.
   - `console.log` a message to test the connection from your script file.
 
-
 ### Solution
 
 <details>
@@ -58,6 +57,7 @@ _Note: Review the exisiting HTML so you are familiar with the structure you are 
           <td id="8" onclick="play(8)"></td>
         </tr>
       </table>
+
       <span>Player </span>
       <span id="player">X</span>
       <span>'s turn</span>
@@ -65,8 +65,8 @@ _Note: Review the exisiting HTML so you are familiar with the structure you are 
     <script src="./index.js"></script>
   </body>
 </html>
-
 ```
+
 </details>
 
 ## Step 2
@@ -76,8 +76,9 @@ _Note: Review the exisiting HTML so you are familiar with the structure you are 
 In this step, we will reassign value of the `player` from `X` to `O` when the board is clicked. This will occur after a `player` has clicked the board to take their turn and it is then the next players turn.
 
 ### Instructions
-- In index.js, create a function called `play`. We will be invoking this function any time one of 9 boxes are clicked. 
-- In the `play` function, using 'getElementById', select the span in the html with the id of `player`. 
+
+- In index.js, create a function called `play`. We will be invoking this function any time one of 9 boxes are clicked.
+- In the `play` function, using 'getElementById', select the span in the html with the id of `player`.
 - Every time this function runs we will want to toggle the `X` to a `O` or vise versa to signify the next player's turn.
 
 <details>
@@ -85,16 +86,15 @@ In this step, we will reassign value of the `player` from `X` to `O` when the bo
 <code>Detailed Instructions</code>
 </summary>
 
-  - The first thing that we will want to do inside our `index.js` file is to make a function called `play`. This function will not take in any parameters.
-  - Inside the `play` function we need to get the element in the html document that displays who's turn it currently is. Notice that in the HTML file there is a span surrounding an X with an id of `player`.
-    - To select the span we will need to use `document.getElementById('player')` and store it in a variable called `playerSpan` so we can reference it later in the function.
-  - Now that we have selected the span and stored it to a variable we need to toggle the text inside the html to be either `X` or `O`.
-    - To do this we need to write an if statement that checks if the `playerSpan.innerText` is `===` to `X`.
-    - If `playerSpan.innerText` is equal to `X` then set the the value of `playerSpan.innerText` to `O`.
-    - Else, set the value of `playerSpan.innerText` to `X`, Because if it isn't `X` It should be `O`
+- The first thing that we will want to do inside our `index.js` file is to make a function called `play`. This function will not take in any parameters.
+- Inside the `play` function we need to get the element in the html document that displays who's turn it currently is. Notice that in the HTML file there is a span surrounding an X with an id of `player`.
+  - To select the span we will need to use `document.getElementById('player')` and store it in a variable called `playerSpan` so we can reference it later in the function.
+- Now that we have selected the span and stored it to a variable we need to toggle the text inside the html to be either `X` or `O`.
+  - To do this we need to write an if statement that checks if the `playerSpan.innerText` is `===` to `X`.
+  - If `playerSpan.innerText` is equal to `X` then set the the value of `playerSpan.innerText` to `O`.
+  - Else, set the value of `playerSpan.innerText` to `X`, Because if it isn't `X` It should be `O`
 
 </details>
-
 
 ### Solution
 
@@ -104,12 +104,12 @@ In this step, we will reassign value of the `player` from `X` to `O` when the bo
 
 ```js
 function play() {
-  const playerSpan = document.getElementById('player');
+  const playerSpan = document.getElementById("player");
 
-  if (playerSpan.innerText === 'X') {
-    playerSpan.innerText = 'O';
+  if (playerSpan.innerText === "X") {
+    playerSpan.innerText = "O";
   } else {
-    playerSpan.innerText = 'X';
+    playerSpan.innerText = "X";
   }
 }
 ```
@@ -123,6 +123,7 @@ function play() {
 In this step, we will put either an `X` or an `O` as the content of the square that is clicked.
 
 ### Instructions
+
 - Open `index.js`
 - Add a parameter to the function `play`. The value being passed in is the id of the box that was clicked.
 - Using the passed in parameter and `getElementById` select the box that was clicked and save it to a variable.
@@ -136,7 +137,7 @@ In this step, we will put either an `X` or an `O` as the content of the square t
 - Inside of `index.js` we need to make some more changes to the `play` function.
 - Change the function so that it now takes in a parameter, it can be named what ever we want, but for clarity sake lets call it `clickedId`.
 - The value that gets passed in is the id of the selected element, so lets use that and `document.getElementById(clickedId)` and save it to a variable called `clickedElement`.
-- Inside the if statement lets set the `clickedElement.innerText` equal to `X`. In the else clause, set it to `O`. 
+- Inside the if statement lets set the `clickedElement.innerText` equal to `X`. In the else clause, set it to `O`.
 
 </details>
 
@@ -148,15 +149,15 @@ In this step, we will put either an `X` or an `O` as the content of the square t
 
 ```js
 function play(clickedId) {
-  const playerSpan = document.getElementById('player');
+  const playerSpan = document.getElementById("player");
   const clickedElement = document.getElementById(clickedId);
 
-  if (playerSpan.innerText === 'X') {
-    playerSpan.innerText = 'O';
-    clickedElement.innerText = 'X';
+  if (playerSpan.innerText === "X") {
+    playerSpan.innerText = "O";
+    clickedElement.innerText = "X";
   } else {
-    playerSpan.innerText = 'X';
-    clickedElement.innerText = 'O';
+    playerSpan.innerText = "X";
+    clickedElement.innerText = "O";
   }
 }
 ```
@@ -172,9 +173,9 @@ In this step, we will create an array that will keep track of the game's progres
 ### Instructions
 
 - Create a variable at the top of the document, outside the `play` function, that is equal to an empty array.
-- In the `play` function, add the current player's value (`X` or `O`) to the array we defined above at the index of `clickedId`. 
-    - ex. If the top left square was clicked by player `X`, we would expect `X` to be added to the array at index 0.
-    - ex. If the very center square was clicked by player `O`, we would expect `O` to be added to the array at index 4.
+- In the `play` function, add the current player's value (`X` or `O`) to the array we defined above at the index of `clickedId`.
+  - ex. If the top left square was clicked by player `X`, we would expect `X` to be added to the array at index 0.
+  - ex. If the very center square was clicked by player `O`, we would expect `O` to be added to the array at index 4.
 - `console.log` the array in your function to keep track of it's current value.
 
 <details>
@@ -191,7 +192,6 @@ In this step, we will create an array that will keep track of the game's progres
 
 ### Solution
 
-
 <details>
 <summary><code>/index.js</code> </summary>
 
@@ -199,17 +199,17 @@ In this step, we will create an array that will keep track of the game's progres
 const board = [];
 
 function play(clickedId) {
-  const playerSpan = document.getElementById('player');
+  const playerSpan = document.getElementById("player");
   const clickedElement = document.getElementById(clickedId);
 
-  if (playerSpan.innerText === 'X') {
-    playerSpan.innerText = 'O';
-    clickedElement.innerText = 'X';
-    board[clickedId] = 'X';
+  if (playerSpan.innerText === "X") {
+    playerSpan.innerText = "O";
+    clickedElement.innerText = "X";
+    board[clickedId] = "X";
   } else {
-    playerSpan.innerText = 'X';
-    clickedElement.innerText = 'O';
-    board[clickedId] = 'O';
+    playerSpan.innerText = "X";
+    clickedElement.innerText = "O";
+    board[clickedId] = "O";
   }
   console.log(board);
 }
@@ -226,10 +226,9 @@ In this step, we will complete the logic that will determine if there is a winne
 ### Instructions
 
 - You will need to determine if there is a winner, and display the winning player to the screen using `window.alert`.
-    - There are many different ways to accomplish this task. Think through and write out each step that is needed as an outline.
-    - This most straightforward approach is to check every possible winning combination.
+  - There are many different ways to accomplish this task. Think through and write out each step that is needed as an outline.
+  - This most straightforward approach is to check every possible winning combination.
 - If there is no winner and the board is filled with all 9 spots taken up then alert that the game was a "CAT's" game.
-
 
 <details>
 <summary>
@@ -259,17 +258,17 @@ In this step, we will complete the logic that will determine if there is a winne
 const board = [];
 
 function play(clickedId) {
-  const playerSpan = document.getElementById('player');
+  const playerSpan = document.getElementById("player");
   const clickedElement = document.getElementById(clickedId);
 
-  if (playerSpan.innerText === 'X') {
-    playerSpan.innerText = 'O';
-    clickedElement.innerText = 'X';
-    board[clickedId] = 'X';
+  if (playerSpan.innerText === "X") {
+    playerSpan.innerText = "O";
+    clickedElement.innerText = "X";
+    board[clickedId] = "X";
   } else {
-    playerSpan.innerText = 'X';
-    clickedElement.innerText = 'O';
-    board[clickedId] = 'O';
+    playerSpan.innerText = "X";
+    clickedElement.innerText = "O";
+    board[clickedId] = "O";
   }
   console.log(board);
 
@@ -288,31 +287,59 @@ function play(clickedId) {
     alert(`${topLeft} is the winner`);
     return;
   }
-  if (middleLeft !== undefined && middleLeft === middleCenter && middleLeft === middleRight) {
+  if (
+    middleLeft !== undefined &&
+    middleLeft === middleCenter &&
+    middleLeft === middleRight
+  ) {
     alert(`${middleLeft} is the winner`);
     return;
   }
-  if (bottomLeft !== undefined && bottomLeft === bottomCenter && bottomLeft === bottomRight) {
+  if (
+    bottomLeft !== undefined &&
+    bottomLeft === bottomCenter &&
+    bottomLeft === bottomRight
+  ) {
     alert(`${bottomLeft} is the winner`);
     return;
   }
-  if (topLeft !== undefined && topLeft === middleLeft && topLeft === bottomLeft) {
+  if (
+    topLeft !== undefined &&
+    topLeft === middleLeft &&
+    topLeft === bottomLeft
+  ) {
     alert(`${topLeft} is the winner`);
     return;
   }
-  if (topCenter !== undefined && topCenter === middleCenter && topCenter === bottomCenter) {
+  if (
+    topCenter !== undefined &&
+    topCenter === middleCenter &&
+    topCenter === bottomCenter
+  ) {
     alert(`${topCenter} is the winner`);
     return;
   }
-  if (topRight !== undefined && topRight === middleRight && topRight === bottomRight) {
+  if (
+    topRight !== undefined &&
+    topRight === middleRight &&
+    topRight === bottomRight
+  ) {
     alert(`${topRight} is the winner`);
     return;
   }
-  if (topLeft !== undefined && topLeft === middleCenter && topLeft === bottomRight) {
+  if (
+    topLeft !== undefined &&
+    topLeft === middleCenter &&
+    topLeft === bottomRight
+  ) {
     alert(`${topLeft} is the winner`);
     return;
   }
-  if (bottomLeft !== undefined && bottomLeft === middleCenter && bottomLeft === topRight) {
+  if (
+    bottomLeft !== undefined &&
+    bottomLeft === middleCenter &&
+    bottomLeft === topRight
+  ) {
     alert(`${bottomLeft} is the winner`);
     return;
   }
@@ -328,18 +355,16 @@ function play(clickedId) {
     alert("Cat's game, there is no winner");
   }
 }
-
 ```
 
 </details>
 
-## Black Diamond 
+## Black Diamond
 
 1. Create a function that resets the board after each game. This function should be called after the winner is revealed.
 2. Add a button that runs the reset function when it is clicked.
-3. The current logic allows players to override a square that has already been played. Alter the function to remove the ability to override a square. 
+3. The current logic allows players to override a square that has already been played. Alter the function to remove the ability to override a square.
 4. Alter the game so that users can not continue to play after a winner has been decided.
-
 
 ## Contributions
 
