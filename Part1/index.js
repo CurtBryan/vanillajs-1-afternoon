@@ -3,7 +3,9 @@ let board = [];
 function play(clickedId) {
   const playerSpan = document.getElementById("player");
   const clickedElement = document.getElementById(clickedId);
-
+  if (clickedElement.innerText) {
+    return;
+  }
   if (playerSpan.innerText === "X") {
     playerSpan.innerText = "O";
     clickedElement.innerText = "X";
